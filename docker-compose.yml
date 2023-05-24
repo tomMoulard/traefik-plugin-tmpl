@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  traefik:
+    image: traefik:v3.0
+    command:
+      - --api.insecure=true
+      - --providers.docker
+      - --log.level=ERROR
+      - --experimental.localPlugins.traefik-plugin-tmpl.modulename=github.com/tomMoulard/traefik-plugin-tmpl
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/plugins-local/src/github.com/tomMoulard/traefik-plugin-tmpl
+    labels:
+      traefik.http.routers.tmpl.rule: Host(`tmpl.localhost`)
+      traefik.http.routers.tmpl.middlewares: tmpl
+      traefik.http.middlewares.tmpl.plugin.traefik-plugin-tmpl.foo: bar

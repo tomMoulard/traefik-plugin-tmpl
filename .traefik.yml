@@ -1,0 +1,12 @@
+displayName: Tmpl
+type: middleware
+
+import: github.com/tomMoulard/traefik-plugin-tmpl
+
+summary: 'FIXME'
+
+# FIXME: create an icon
+# iconPath: ./docs/img/logo.png
+
+testData:
+  # foo: bar

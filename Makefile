@@ -1,7 +1,7 @@
-.PHONY: lint test vendor clean
+.POSIX:
 
-.PHONY: default
-default: lint test
+.PHONY: all
+all: lint test
 
 .PHONY: lint
 lint:
@@ -20,8 +20,8 @@ vendor:
 	go mod vendor
 
 .PHONY: entr
+# https://github.com/eradman/entr
 entr:
-	# https://github.com/eradman/entr
 	find | entr -r -s "docker compose up --remove-orphans"
 
 .PHONY: clean
